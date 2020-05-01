@@ -52,9 +52,7 @@ class App extends Component {
     return (
       <div>
         <Map setTooltipContent={this.setTooltipContent} />
-        {this.state.country == "" ? (
-          ""
-        ) : (
+        {this.state.country && (
           <ReactTooltip>
             <p>Country: {this.state.country}</p>
             <p>
