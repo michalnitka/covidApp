@@ -18,8 +18,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-button {
-  position: absolute;
-  top: 10px;
-  left: 50%;
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.map {
+  width: 65vw;
+}
+.charts {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 35vw;
+  height: 100vh;
+  border-left: 2px solid #454545;
+}
+.charts div {
+  text-align: center;
+}
+select#countrySelecet {
+  width: 50%;
 }

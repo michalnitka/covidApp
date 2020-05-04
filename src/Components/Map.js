@@ -18,25 +18,22 @@ class Map extends React.Component {
     fetch("https://api.covid19api.com/summary", {
       method: "GET",
       redirect: "follow",
-      // headers: {
-      //   "x-rapidapi-host": "covid-193.p.rapidapi.com",
-      //   "x-rapidapi-key": "5f1ec83cbamsh630e60b9c99d261p1940f8jsnfaa35470985a",
-      // },
     })
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        // data.response.map((item) => {
-        //   this.state.countries.push(item.Countries);
-        // });
-        // this.state.countries.push(data.Countries.Country);
         data.Countries.forEach((country) => this.state.countries.push(country));
       })
 
       .catch((err) => {
         console.log(err);
       });
+    this.updateCountries();
+  }
+
+  updateCountries() {
+    this.props.setCountries(this.state.countries);
   }
 
   render() {
