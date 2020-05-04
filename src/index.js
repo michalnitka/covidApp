@@ -19,11 +19,11 @@ class App extends Component {
     newRecovered: null,
     date: "",
   };
-  setCountries = (countries) => {
-    this.setState({
-      countries,
-    });
-  };
+  // setCountries = (countries) => {
+  //   this.setState({
+  //     countries,
+  //   });
+  // };
 
   setTooltipContent = (
     country,
@@ -46,13 +46,30 @@ class App extends Component {
       date,
     });
   };
+
+  componentDidMount() {
+    fetch("https://api.covid19api.com/summary", {
+      method: "GET",
+      redirect: "follow",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        data.Countries.forEach((country) => this.state.countries.push(country));
+      })
+
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   render() {
     return (
       <div className="wrapper">
         <div className="map">
           <Map
             setTooltipContent={this.setTooltipContent}
-            setCountries={this.setCountries}
+            countries={this.state.countries}
           />
           {this.state.country && <Tooltip data={this.state} />}
         </div>

@@ -27,22 +27,8 @@ import React, { Component } from "react";
 // }
 class Input extends Component {
   state = {
-    countries: [],
+    countries: this.props.countries,
   };
-  //   componentDidMount() {
-  //     const requestOptions = {
-  //       method: "GET",
-  //       redirect: "follow",
-  //     };
-
-  //     fetch("https://api.covid19api.com/countries", requestOptions)
-  //       .then((result) => result.json())
-  //       .then((data) => {
-  //         data.forEach((country) => this.state.countries.push(country));
-  //       })
-  //       .catch((error) => console.log("error", error));
-  //   }
-
   //   componentDidUpdate() {
   //     if (this.state.countries.length < 2) {
   //       this.setState({
@@ -60,20 +46,17 @@ class Input extends Component {
   //     });
   //   }
 
-  componentDidMount() {
-    this.props.forEach((country) => {
-      this.state.countries.push(country);
-    });
-  }
-
   render() {
-    console.log(this.state.countries);
-
     return (
       <select name="countries" id="countrySelected">
-        {this.state.countries.forEach((option) => {
-          return <option value={option.slug}>{option.Country}</option>;
-        })}
+        {this.state.countries &&
+          this.state.countries.map((country) => {
+            return (
+              <option key={country.CountryCode} value={country.slug}>
+                {country.Country}
+              </option>
+            );
+          })}
       </select>
     );
   }

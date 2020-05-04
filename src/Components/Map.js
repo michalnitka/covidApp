@@ -12,28 +12,26 @@ const geoUrl =
 
 class Map extends React.Component {
   state = {
-    countries: [],
+    countries: this.props.countries,
   };
   componentDidMount() {
-    fetch("https://api.covid19api.com/summary", {
-      method: "GET",
-      redirect: "follow",
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        data.Countries.forEach((country) => this.state.countries.push(country));
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
-    this.updateCountries();
-  }
-
-  updateCountries() {
-    this.props.setCountries(this.state.countries);
+    //   fetch("https://api.covid19api.com/summary", {
+    //     method: "GET",
+    //     redirect: "follow",
+    //   })
+    //     .then((response) => {
+    //       return response.json();
+    //     })
+    //     .then((data) => {
+    //       data.Countries.forEach((country) => this.state.countries.push(country));
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    //   this.updateCountries();
+    // }
+    // updateCountries() {
+    //   this.props.setCountries(this.state.countries);
   }
 
   render() {
