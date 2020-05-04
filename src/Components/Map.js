@@ -14,25 +14,6 @@ class Map extends React.Component {
   state = {
     countries: this.props.countries,
   };
-  componentDidMount() {
-    //   fetch("https://api.covid19api.com/summary", {
-    //     method: "GET",
-    //     redirect: "follow",
-    //   })
-    //     .then((response) => {
-    //       return response.json();
-    //     })
-    //     .then((data) => {
-    //       data.Countries.forEach((country) => this.state.countries.push(country));
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    //   this.updateCountries();
-    // }
-    // updateCountries() {
-    //   this.props.setCountries(this.state.countries);
-  }
 
   render() {
     return (
@@ -47,7 +28,7 @@ class Map extends React.Component {
                     geography={geo}
                     onMouseEnter={() => {
                       const { ISO_A2 } = geo.properties;
-                      this.state.countries.forEach((countryName) => {
+                      this.state.countries.map((countryName) => {
                         if (countryName.CountryCode === ISO_A2) {
                           this.props.setTooltipContent(
                             countryName.Country,

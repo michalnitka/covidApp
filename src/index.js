@@ -19,11 +19,6 @@ class App extends Component {
     newRecovered: null,
     date: "",
   };
-  // setCountries = (countries) => {
-  //   this.setState({
-  //     countries,
-  //   });
-  // };
 
   setTooltipContent = (
     country,
@@ -56,7 +51,7 @@ class App extends Component {
         return response.json();
       })
       .then((data) => {
-        data.Countries.forEach((country) => this.state.countries.push(country));
+        data.Countries.map((country) => this.state.countries.push(country));
       })
 
       .catch((err) => {
