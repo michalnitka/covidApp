@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, Component } from "react";
 
 import {
   ZoomableGroup,
@@ -10,11 +10,7 @@ import {
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-class Map extends React.Component {
-  state = {
-    countries: this.props.countries,
-  };
-
+class Map extends Component {
   render() {
     return (
       <>
@@ -28,9 +24,12 @@ class Map extends React.Component {
                     geography={geo}
                     onMouseEnter={() => {
                       const { ISO_A2 } = geo.properties;
-                      this.state.countries.map((countryName) => {
-                        if (countryName.CountryCode === ISO_A2) {
-                          this.props.setTooltipContent(
+                      this.props.countries
+                        .filter(
+                          (countryName) => countryName.CountryCode === ISO_A2
+                        )
+                        .map((countryName) => {
+                          return this.props.setTooltipContent(
                             countryName.Country,
                             countryName.TotalConfirmed,
                             countryName.NewConfirmed,
@@ -40,10 +39,7 @@ class Map extends React.Component {
                             countryName.NewRecovered,
                             countryName.Date
                           );
-                        } else {
-                          return;
-                        }
-                      });
+                        });
                     }}
                     onMouseLeave={() => {
                       this.props.setTooltipContent("");
