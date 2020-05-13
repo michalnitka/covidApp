@@ -4,7 +4,7 @@ import Map from "./Components/Map";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import Tooltip from "./Components/ReactTooltip";
-import Chart from "./Components/Charts";
+
 import Input from "./Components/Input";
 
 class App extends Component {
@@ -18,7 +18,14 @@ class App extends Component {
     recovered: null,
     newRecovered: null,
     date: "",
+    selectValue: "",
   };
+
+  // setSelectValue = (value) => {
+  //   this.setState({
+  //     selectValue: value,
+  //   });
+  // };
 
   setTooltipContent = (
     country,
@@ -51,7 +58,12 @@ class App extends Component {
         return response.json();
       })
       .then((data) => {
-        data.Countries.map((country) => this.state.countries.push(country));
+        this.setState({ countries: data.Countries });
+        // data.Countries.map((country) => this.state.countries.push(country));
+        // data.Countries.map(
+        //   (country) =>
+        //     (this.state.countries = this.state.countries.concat([country]))
+        // );
       })
 
       .catch((err) => {
@@ -69,8 +81,10 @@ class App extends Component {
           {this.state.country && <Tooltip data={this.state} />}
         </div>
         <div className="charts">
-          <Input countries={this.state.countries} />
-          <Chart />
+          <Input
+            countries={this.state.countries}
+            // selectValue={this.setSelectValue}
+          />
         </div>
       </div>
     );
