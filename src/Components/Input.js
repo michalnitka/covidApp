@@ -9,7 +9,8 @@ let requestOptions = {
 class Input extends Component {
   state = {
     selectValue: "afghanistan",
-    data: [],
+    dataActive: [],
+    dataDeaths: [],
   };
   handleChange = (e) => {
     this.setState({
@@ -24,7 +25,18 @@ class Input extends Component {
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          data,
+          dataActive: data
+            .filter((country) => country.Active > 0)
+            .map((country) => ({
+              property: country.Active,
+              date: country.Date.substring(0, 10),
+            })),
+          dataDeaths: data
+            .filter((country) => country.Deaths > 0)
+            .map((country) => ({
+              property: country.Deaths,
+              date: country.Date.substring(0, 10),
+            })),
         })
       )
       .catch((error) => console.log("error", error));
@@ -54,7 +66,17 @@ class Input extends Component {
               );
             })}
         </select>
-        <Charts data={this.state.data} />
+
+        <Charts
+          data={this.state.dataActive}
+          name="Active cases"
+          color="rgba(1, 167, 255, 1)"
+        />
+        <Charts
+          data={this.state.dataDeaths}
+          name="Deaths by day"
+          color="rgba(255, 37, 37, 1)"
+        />
       </>
     );
   }
