@@ -5,7 +5,6 @@ let requestOptions = {
   method: "GET",
   redirect: "follow",
 };
-
 class Input extends Component {
   state = {
     selectValue: "afghanistan",
@@ -17,7 +16,7 @@ class Input extends Component {
       selectValue: e.target.value,
     });
   };
-  getData = () =>
+  getData = () => {
     fetch(
       `https://api.covid19api.com/total/country/${this.state.selectValue}`,
       requestOptions
@@ -40,12 +39,15 @@ class Input extends Component {
         })
       )
       .catch((error) => console.log("error", error));
+  };
 
   componentDidMount() {
     this.getData();
   }
-  componentDidUpdate() {
-    this.getData();
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.selectValue !== prevState.selectValue) {
+      this.getData();
+    }
   }
 
   render() {
@@ -66,7 +68,6 @@ class Input extends Component {
               );
             })}
         </select>
-
         <Charts
           data={this.state.dataActive}
           name="Active cases"
@@ -74,7 +75,7 @@ class Input extends Component {
         />
         <Charts
           data={this.state.dataDeaths}
-          name="Deaths by day"
+          name="Deaths"
           color="rgba(255, 37, 37, 1)"
         />
       </>
