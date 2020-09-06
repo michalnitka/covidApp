@@ -36,7 +36,10 @@ function Map({ countries, setTooltipContent }) {
                           countryName.NewDeaths,
                           countryName.TotalRecovered,
                           countryName.NewRecovered,
-                          countryName.Date
+                          `${countryName.Date.substring(
+                            0,
+                            10
+                          )} ${countryName.Date.substring(11, 16)}`
                         );
                       });
                   }}

@@ -40,5 +40,16 @@
   },
   "devDependencies": {
     "gh-pages": "^2.2.0"
+  },
+  "description": "https://michalnitka.github.io/covidApp/",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michalnitka/covidApp.git"
+  },
+  "author": "Michał Nitka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michalnitka/covidApp/issues"
   }
 }

@@ -68,16 +68,21 @@ class Input extends Component {
               );
             })}
         </select>
-        <Charts
-          data={this.state.dataActive}
-          name="Active cases"
-          color="rgba(1, 167, 255, 1)"
-        />
-        <Charts
-          data={this.state.dataDeaths}
-          name="Deaths"
-          color="rgba(255, 37, 37, 1)"
-        />
+        {this.state.selectValue && (
+          <>
+            {" "}
+            <Charts
+              countryData={this.state.dataActive}
+              name="Active cases"
+              color="rgba(1, 167, 255, 1)"
+            />
+            <Charts
+              countryData={this.state.dataDeaths}
+              name="Deaths"
+              color="rgba(255, 37, 37, 1)"
+            />
+          </>
+        )}
       </>
     );
   }

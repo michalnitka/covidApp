@@ -26,6 +26,10 @@ code {
 }
 .map {
   width: 65vw;
+  border-right: 2px solid #454545;
+}
+.rsm-geography {
+  stroke: #585858;
 }
 .charts {
   display: flex;
@@ -33,12 +37,31 @@ code {
   align-items: center;
   flex-direction: column;
   width: 35vw;
-  height: 100vh;
-  border-left: 2px solid #454545;
 }
 .charts div {
   text-align: center;
 }
-select#countrySelecet {
+#countrySelected {
+  margin-top: 20px;
   width: 50%;
+}
+.chart-conteiner {
+  position: relative;
+  height: 40%;
+  width: 100%;
+  margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .map {
+    width: 100%;
+    border: none;
+  }
+  .charts {
+    width: 100%;
+    border-left: none;
+  }
 }
